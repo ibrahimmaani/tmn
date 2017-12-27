@@ -2,14 +2,22 @@ package com.example.commerce;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+
+import com.github.vivchar.viewpagerindicator.ViewPagerIndicator;
 
 public class MainActivity extends AppCompatActivity {
 
 
     Button btn_signin, btn_signup;
+    ViewPager viewPager;
+    int images[] = {R.drawable.home4, R.drawable.home5, R.drawable.home6};
+    MyCustomPagerAdapter myCustomPagerAdapter;
+    ViewPagerIndicator viewPagerIndicator;
+    ViewPager.OnPageChangeListener mOnPageChangeListener;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +41,12 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        viewPager = (ViewPager)findViewById(R.id.viewPager);
+        myCustomPagerAdapter = new MyCustomPagerAdapter(MainActivity.this, images);
+        viewPagerIndicator = (ViewPagerIndicator) findViewById(R.id.indicator);
+        viewPager.setAdapter(myCustomPagerAdapter);
+        viewPagerIndicator.setupWithViewPager(viewPager);
+        viewPagerIndicator.addOnPageChangeListener(mOnPageChangeListener);
 
     }
 

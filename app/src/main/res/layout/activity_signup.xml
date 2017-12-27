@@ -29,7 +29,7 @@
                 app:srcCompat="@drawable/signup" />
 
             <ImageView
-                android:id="@+id/imageView5"
+                android:id="@+id/imageClose"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignTop="@+id/textView"
@@ -152,11 +152,12 @@
             android:inputType="text"/>
         <Button
             android:id="@+id/btn_signup"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="SIGN UP"
             android:textColor="#cccccc"
             android:background="#5e5e5e"
+            android:layout_gravity="center"
             android:layout_marginTop="30dp"
             />
 
