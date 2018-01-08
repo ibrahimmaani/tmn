@@ -3,19 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
     <android.support.v4.view.ViewPager
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
-        android:layout_marginTop="20dp"
-        android:layout_height="250dp"/>
+        android:layout_height="320dp"
+        android:layout_marginTop="30dp"/>
 
-    <com.github.vivchar.viewpagerindicator.ViewPagerIndicator
+        <com.github.vivchar.viewpagerindicator.ViewPagerIndicator
         android:id = "@+id/indicator"
         android:layout_width = "wrap_content"
         android:layout_height = "wrap_content"
@@ -26,8 +27,7 @@
         app:itemScale = "1"
         app:itemSelectedTint = "@android:color/black"
         app:itemSize = "5dp"
-        app:itemTint = "@android:color/darker_gray"
-        />
+        app:itemTint = "@android:color/darker_gray"/>
 
 
     <TextView
@@ -39,8 +39,7 @@
         android:gravity="center"
         android:layout_marginTop="30dp"
         android:textColor="#000000"
-        android:id="@+id/textcaption"
-        />
+        android:id="@+id/textcaption"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -50,9 +49,7 @@
         android:textStyle="bold"
         android:gravity="center"
         android:id="@+id/lipsum"
-        android:layout_below="@+id/textcaption"
-
-        />
+        android:layout_below="@+id/textcaption"/>
     </LinearLayout>
     <LinearLayout
         android:id="@+id/linearLayout1"

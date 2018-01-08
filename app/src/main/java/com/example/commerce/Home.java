@@ -4,6 +4,11 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+
 
 public class Home extends AppCompatActivity{
 
@@ -11,8 +16,13 @@ public class Home extends AppCompatActivity{
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_home);
+            Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+            setSupportActionBar(toolbar);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
+            getSupportActionBar().setHomeAsUpIndicator(R.drawable.arrowleft);
             TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
-            tabLayout.addTab(tabLayout.newTab().setText("OUTWEAR"));
+            tabLayout.addTab(tabLayout.newTab().setText("OUTERWEAR"));
             tabLayout.addTab(tabLayout.newTab().setText("JACKET"));
             tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
             tabLayout.setSelectedTabIndicatorColor((int) (0 *getResources().getDisplayMetrics().density));
@@ -40,4 +50,22 @@ public class Home extends AppCompatActivity{
                 public void onTabReselected(TabLayout.Tab tab) {
                 }
             });
-        }}
+}
+        @Override
+        public boolean onCreateOptionsMenu(Menu menu) {
+            MenuInflater inflater = getMenuInflater();
+            inflater.inflate(R.menu.menu, menu);
+            return true;
+        }
+        @Override
+        public boolean onOptionsItemSelected(MenuItem item){
+            int id = item.getItemId();
+
+            if (id == R.id.love){
+                return true;
+            }
+            return super.onOptionsItemSelected(item);
+        }
+
+
+}

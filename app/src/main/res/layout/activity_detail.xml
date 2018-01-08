@@ -3,17 +3,34 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
-        android:id="@+id/detail"
+    <ImageView
+        android:id="@+id/imagebackdetail"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        app:srcCompat="?attr/actionModeCloseDrawable"/>
+
+    <ImageView
+        android:id="@+id/detail1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="50dp"
-        android:text="DETAIL"
-        android:textColor="@android:color/black"
-        android:gravity="center"
-        android:layout_centerInParent="true"/>
+        app:srcCompat="@drawable/detail1"
+        android:layout_below="@+id/imagebackdetail"/>
 
+    <Button
+        android:id="@+id/btndetail1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/detail1"
+        android:layout_marginRight="1dp"
+        android:layout_marginTop="10dp"
+        android:background="#5e5e5e"
+        android:layout_alignParentRight="true"
+        android:text="ADD TO CHART"
+        android:textColor="#cccccc"/>
 
 </RelativeLayout>
