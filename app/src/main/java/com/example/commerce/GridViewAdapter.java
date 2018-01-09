@@ -2,6 +2,7 @@ package com.example.commerce;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -74,6 +75,11 @@ public class GridViewAdapter extends BaseAdapter{
             public void onClick(View v) {
                 // TODO Auto-generated method stub
                 Toast.makeText(context, "You Clicked "+produk.getName(), Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(context, ActivityDetail.class);
+                intent.putExtra("name", produk.getName());
+                intent.putExtra("price", String.valueOf(produk.getPrice()) );
+                intent.putExtra("description", String.valueOf(produk.getDescription()));
+                context.startActivity(intent);
             }
         });
 

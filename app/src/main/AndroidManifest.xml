@@ -31,7 +31,8 @@
             android:screenOrientation="portrait"
             >
         </activity>
-        <activity android:name=".ActivityDetail">
+        <activity android:name=".ActivityDetail"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
         </activity>
     </application>

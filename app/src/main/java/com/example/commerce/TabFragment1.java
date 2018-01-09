@@ -69,9 +69,11 @@ GridViewAdapter adapterViewAndroid;
                     Log.d("current_page", String.valueOf(data.optInt("current_page")));
                     ListProduk listProduk1 = new ListProduk();
                     listProduk1.getData().addAll(listProduct);
+
                     adapterViewAndroid = new GridViewAdapter(getActivity(), listProduct);
                     GridView gridView = (GridView) view.findViewById(R.id.gridview1);
                     gridView.setAdapter(adapterViewAndroid);
+                    nDialog.dismiss();
 
                 } catch (JSONException e) {
                     e.printStackTrace();
