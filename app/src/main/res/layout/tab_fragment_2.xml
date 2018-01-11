@@ -6,6 +6,7 @@
     >
 
     <GridView
+        android:scrollbars="none"
         android:id="@+id/gridview2"
         android:layout_height="match_parent"
         android:columnWidth="90dp"
