@@ -78,7 +78,7 @@ public class GridViewAdapter extends BaseAdapter{
                 Intent intent = new Intent(context, ActivityDetail.class);
                 intent.putExtra("name", produk.getName());
                 intent.putExtra("price", String.valueOf(produk.getPrice()) );
-                intent.putExtra("description", String.valueOf(produk.getDescription()));
+                intent.putExtra("description", produk.getDescription());
                 context.startActivity(intent);
             }
         });

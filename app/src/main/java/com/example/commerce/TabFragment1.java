@@ -63,6 +63,7 @@ GridViewAdapter adapterViewAndroid;
                         JSONObject obj = listProductJson.getJSONObject(i);
                         produk.setName(obj.getString("name"));
                         produk.setPrice(obj.getLong("price"));
+                        produk.setDescription(obj.getString("description"));
                         listProduct.add(produk);
                     }
 

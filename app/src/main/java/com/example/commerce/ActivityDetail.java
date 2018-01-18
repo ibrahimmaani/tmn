@@ -36,6 +36,8 @@ public class ActivityDetail extends AppCompatActivity {
 
         TextView name = (TextView) findViewById(R.id.name);
         TextView price = (TextView) findViewById(R.id.price);
+        TextView description = (TextView) findViewById(R.id.description);
+
         Intent intent = getIntent();
         Bundle bd = intent.getExtras();
         if (bd != null) {
@@ -47,6 +49,9 @@ public class ActivityDetail extends AppCompatActivity {
             String getPrice = (String) bd.get("price");
             price.setText(getPrice);
 
+
+            String getDescription = (String) bd.get("description");
+            description.setText(getDescription);
 
         }
     }
@@ -65,5 +70,7 @@ public class ActivityDetail extends AppCompatActivity {
         inflater.inflate(R.menu.menu_detail, menu_detail);
         return true;
     }
+
+
 
 }
