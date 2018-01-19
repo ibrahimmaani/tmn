@@ -4,20 +4,17 @@ import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
 
-import com.example.commerce.produk.ListProduk;
-import com.example.commerce.produk.Produk;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.example.commerce.object.ListProduk;
+import com.example.commerce.object.Produk;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 public class TabFragment1 extends Fragment{
@@ -55,28 +52,37 @@ GridViewAdapter adapterViewAndroid;
             protected void onPostExecute(String result) {
                 super.onPostExecute(result);
                 try {
-                    JSONObject data = new JSONObject(result);
-                    JSONArray listProductJson = data.optJSONArray("data");
-                    ArrayList<Produk> listProduct = new ArrayList<>();
-                    for (int i = 0 ; i < listProductJson.length(); i++) {
+
+                    Gson gson = new Gson();
+                    ListProduk listProduk = gson.fromJson(result, ListProduk.class);
+                    List<Produk> produkList = listProduk.getData().getProduk();
+
+                    //JSONObject data = new JSONObject(result);
+                    //JSONArray listProductJson = data.optJSONArray("data");
+                    //ArrayList<Produk> listProduct = new ArrayList<>();
+
+                    final ArrayList<Produk> listProduct = new ArrayList<>();
+                    for (int i = 0 ; i < produkList.size(); i++) {
                         Produk produk= new Produk();
-                        JSONObject obj = listProductJson.getJSONObject(i);
-                        produk.setName(obj.getString("name"));
-                        produk.setPrice(obj.getLong("price"));
-                        produk.setDescription(obj.getString("description"));
+                        //JSONObject obj = listProductJson.getJSONObject(i);
+                        produk.setName(produkList.get(i).getName());
+                        produk.setPrice(produkList.get(i).getPrice());
+                        produk.setDescription(produkList.get(i).getDescription());
                         listProduct.add(produk);
                     }
+/*
 
                     Log.d("current_page", String.valueOf(data.optInt("current_page")));
                     ListProduk listProduk1 = new ListProduk();
                     listProduk1.getData().addAll(listProduct);
+*/
 
                     adapterViewAndroid = new GridViewAdapter(getActivity(), listProduct);
                     GridView gridView = (GridView) view.findViewById(R.id.gridview1);
                     gridView.setAdapter(adapterViewAndroid);
                     nDialog.dismiss();
 
-                } catch (JSONException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }

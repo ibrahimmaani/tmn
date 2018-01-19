@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.commerce.produk.Produk;
+import com.example.commerce.object.Produk;
 
 import java.util.ArrayList;
 
