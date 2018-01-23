@@ -1,24 +1,31 @@
 package com.example.commerce.category;
 
 
+import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
+
 public class Category {
-    private int id;
+    @SerializedName("id")
+    private Integer id;
+    @SerializedName("name")
     private String name;
+    @SerializedName("description")
     private String description;
-    private String category_id;
+    @SerializedName("category_id")
+    private Object categoryId;
+    @SerializedName("created_at")
+    private String createdAt;
+    @SerializedName("updated_at")
+    private String updatedAt;
+    @SerializedName("children")
+    private List<Object> children = null;
 
-    public Category(int id, String name, String description, String category_id) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.category_id = category_id;
-    }
-
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -38,11 +45,35 @@ public class Category {
         this.description = description;
     }
 
-    public String getCategory_id() {
-        return category_id;
+    public Object getCategoryId() {
+        return categoryId;
     }
 
-    public void setCategory_id(String category_id) {
-        this.category_id = category_id;
+    public void setCategoryId(Object categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public String getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public String getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(String updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public List<Object> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<Object> children) {
+        this.children = children;
     }
 }

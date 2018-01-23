@@ -9,8 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
 
-import com.example.commerce.object.ListProduk;
-import com.example.commerce.object.Produk;
+import com.example.commerce.category.Category;
+import com.example.commerce.category.ListCategory;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -30,7 +30,7 @@ GridViewAdapter adapterViewAndroid;
 
     public void initFromApi1(){
 
-        String myUrl= "http://projects.wision.id/sispet/public/api/product";
+        String myUrl= "http://projects.wision.id/sispet/public/api/category";
         //String to place our result in
         String result;
         //Instantiate new instance of our class
@@ -54,21 +54,25 @@ GridViewAdapter adapterViewAndroid;
                 try {
 
                     Gson gson = new Gson();
-                    ListProduk listProduk = gson.fromJson(result, ListProduk.class);
-                    List<Produk> produkList = listProduk.getData().getProduk();
+                    ListCategory lc = gson.fromJson(result, ListCategory.class);
+                    List<Category> categoryList = lc.getCategory();
+
+                    /*ListProduk listProduk = gson.fromJson(result, ListProduk.class);
+                    List<Produk> produkList = listProduk.getData().getProduk();*/
 
                     //JSONObject data = new JSONObject(result);
                     //JSONArray listProductJson = data.optJSONArray("data");
                     //ArrayList<Produk> listProduct = new ArrayList<>();
 
-                    final ArrayList<Produk> listProduct = new ArrayList<>();
-                    for (int i = 0 ; i < produkList.size(); i++) {
-                        Produk produk= new Produk();
+                    final ArrayList<Category> listCategory = new ArrayList<>();
+                    for (int i = 0 ; i < categoryList.size(); i++) {
+                        Category category = new Category();
                         //JSONObject obj = listProductJson.getJSONObject(i);
-                        produk.setName(produkList.get(i).getName());
-                        produk.setPrice(produkList.get(i).getPrice());
-                        produk.setDescription(produkList.get(i).getDescription());
-                        listProduct.add(produk);
+                        category.setName(categoryList.get(i).getName());
+                        category.setDescription(categoryList.get(i).getDescription());
+                        listCategory.add(category);
+//
+//                      produk.setPrice(produkList.get(i).getPrice());
                     }
 /*
 
@@ -77,7 +81,7 @@ GridViewAdapter adapterViewAndroid;
                     listProduk1.getData().addAll(listProduct);
 */
 
-                    adapterViewAndroid = new GridViewAdapter(getActivity(), listProduct);
+                    adapterViewAndroid = new GridViewAdapter(getActivity(), listCategory);
                     GridView gridView = (GridView) view.findViewById(R.id.gridview1);
                     gridView.setAdapter(adapterViewAndroid);
                     nDialog.dismiss();

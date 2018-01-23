@@ -12,16 +12,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.commerce.object.Produk;
+import com.example.commerce.category.Category;
 
 import java.util.ArrayList;
 
 public class GridViewAdapter extends BaseAdapter{
 
-    ArrayList<Produk> result;
+    ArrayList<Category> result;
     Context context;
     private static LayoutInflater inflater=null;
-    public GridViewAdapter(Activity mainActivity, ArrayList<Produk> data) {
+    public GridViewAdapter(Activity mainActivity, ArrayList<Category> data) {
         // TODO Auto-generated constructor stub
         result= data;
         context=mainActivity;
@@ -59,26 +59,26 @@ public class GridViewAdapter extends BaseAdapter{
         // TODO Auto-generated method stub
         Holder holder=new Holder();
         View rowView;
-        final Produk produk= result.get(position);
+        final Category category= result.get(position);
 
         rowView = inflater.inflate(R.layout.row_grid, null);
         holder.tv1=(TextView) rowView.findViewById(R.id.textView);
         holder.tv2=(TextView) rowView.findViewById(R.id.textView2);
         holder.img=(ImageView) rowView.findViewById(R.id.imageView);
 
-        holder.tv1.setText(produk.getName());
-        holder.tv2.setText(String.valueOf(produk.getPrice()));
+        holder.tv1.setText(category.getName());
+//        holder.tv2.setText(String.valueOf(produk.getPrice()));
 
         rowView.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                Toast.makeText(context, "You Clicked "+produk.getName(), Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "You Clicked "+category.getName(), Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(context, ActivityDetail.class);
-                intent.putExtra("name", produk.getName());
-                intent.putExtra("price", String.valueOf(produk.getPrice()) );
-                intent.putExtra("description", produk.getDescription());
+                intent.putExtra("name", category.getName());
+//                intent.putExtra("price", String.valueOf(produk.getPrice()) );
+                intent.putExtra("description", category.getDescription());
                 context.startActivity(intent);
             }
         });

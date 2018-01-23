@@ -76,7 +76,7 @@ public class ActivitySignup extends AppCompatActivity implements View.OnClickLis
                         if(task.isSuccessful()){
                             //display some message here
                             Toast.makeText(ActivitySignup.this,"Successfully Registered", Toast.LENGTH_LONG).show();
-                            startActivity(new Intent(getApplicationContext(),Home.class));
+                            startActivity(new Intent(getApplicationContext(),ActivitySignin.class));
                         }else{
                             //display some message here
                             Toast.makeText(ActivitySignup.this,"Registration Error", Toast.LENGTH_LONG).show();

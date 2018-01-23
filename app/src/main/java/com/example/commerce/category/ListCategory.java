@@ -1,12 +1,17 @@
 package com.example.commerce.category;
 
 
-import java.util.ArrayList;
+import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
 
 public class ListCategory {
+    @SerializedName("status")
     private String status;
-    private String count;
-    private ArrayList<Category> data = new ArrayList<>();
+    @SerializedName("data")
+    private List<Category> category = null;
+    @SerializedName("count")
+    private Integer count;
 
     public String getStatus() {
         return status;
@@ -16,25 +21,19 @@ public class ListCategory {
         this.status = status;
     }
 
-    public ListCategory(String status) {
-
-        this.status = status;
+    public List<Category> getCategory() {
+        return category;
     }
 
-    public ArrayList<Category> getData() {
-        return data;
+    public void setCategory(List<Category> category) {
+        this.category = category;
     }
 
-    public void setData(ArrayList<Category> data) {
-        this.data = data;
-    }
-
-    public String getCount() {
-
+    public Integer getCount() {
         return count;
     }
 
-    public void setCount(String count) {
+    public void setCount(Integer count) {
         this.count = count;
     }
 }
