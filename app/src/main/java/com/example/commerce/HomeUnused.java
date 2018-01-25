@@ -13,7 +13,7 @@ import android.view.MenuItem;
 import com.google.firebase.auth.FirebaseAuth;
 
 
-public class Home extends AppCompatActivity {
+public class HomeUnused extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +73,7 @@ public class Home extends AppCompatActivity {
 
     private void logout(){
         FirebaseAuth.getInstance().signOut();
-        Intent intent = new Intent(Home.this, MainActivity.class);
+        Intent intent = new Intent(HomeUnused.this, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         finish();

@@ -15,11 +15,6 @@
         android:title="notif"
         app:showAsAction="always"></item>
 
-    <item
-        android:id="@+id/logout"
-        android:orderInCategory="3"
-        android:title="LOG OUT"
-        app:showAsAction="never" ></item>
 
 
 </menu>

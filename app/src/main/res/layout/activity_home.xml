@@ -3,29 +3,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Home"
+    tools:context=".HomeUnused"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     >
-
-
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="?attr/actionBarSize">
-    </android.support.v7.widget.Toolbar>
-
 
     <android.support.design.widget.TabLayout
         android:id="@+id/tab_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:elevation="6dp"
         android:minHeight="?attr/actionBarSize"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:tabSelectedTextColor="@android:color/black"
         app:tabTextAppearance="@style/TabText"
-        android:layout_below="@+id/toolbar"
+        android:background="@android:color/white"
         app:tabTextColor="@android:color/darker_gray"/>
 
     <android.support.v4.view.ViewPager

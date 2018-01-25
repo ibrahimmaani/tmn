@@ -12,6 +12,9 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.commerce.sidenavigation.NavBar;
+import com.google.android.gms.common.SignInButton;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -23,6 +26,9 @@ public class ActivitySignin extends AppCompatActivity {
     private FirebaseAuth auth;
     private ProgressBar progressBar;
     private Button btnLogin;
+    private SignInButton signInButton;
+    private static final int RC_SIGN_IN = 1;
+    private GoogleApiClient mGoogleApiClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,9 +36,8 @@ public class ActivitySignin extends AppCompatActivity {
 
         //Get Firebase auth instance
         auth = FirebaseAuth.getInstance();
-
         if (auth.getCurrentUser() != null) {
-            startActivity(new Intent(ActivitySignin.this, Home.class));
+            startActivity(new Intent(ActivitySignin.this, NavBar.class));
             finish();
         }
 
@@ -88,7 +93,7 @@ public class ActivitySignin extends AppCompatActivity {
                                         Toast.makeText(ActivitySignin.this, getString(R.string.auth_failed), Toast.LENGTH_LONG).show();
                                     }
                                 } else {
-                                    Intent intent = new Intent(ActivitySignin.this, Home.class);
+                                    Intent intent = new Intent(ActivitySignin.this, NavBar.class);
                                     startActivity(intent);
                                     finish();
                                 }
