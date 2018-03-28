@@ -12,16 +12,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.commerce.category.Category;
+import com.example.commerce.models.entities.Product;
+import com.example.commerce.models.networks.ApiClient;
+import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class GridViewAdapter extends BaseAdapter{
 
-    ArrayList<Category> result;
+    List<Product> result;
     Context context;
     private static LayoutInflater inflater=null;
-    public GridViewAdapter(Activity mainActivity, ArrayList<Category> data) {
+    public GridViewAdapter(Activity mainActivity, List<Product> data) {
         // TODO Auto-generated constructor stub
         result= data;
         context=mainActivity;
@@ -59,26 +61,33 @@ public class GridViewAdapter extends BaseAdapter{
         // TODO Auto-generated method stub
         Holder holder=new Holder();
         View rowView;
-        final Category category= result.get(position);
+        final Product product= result.get(position);
 
         rowView = inflater.inflate(R.layout.row_grid, null);
         holder.tv1=(TextView) rowView.findViewById(R.id.textView);
         holder.tv2=(TextView) rowView.findViewById(R.id.textView2);
         holder.img=(ImageView) rowView.findViewById(R.id.imageView);
 
-        holder.tv1.setText(category.getName());
-//        holder.tv2.setText(String.valueOf(produk.getPrice()));
+        holder.tv1.setText(result.get(position).getName());
+        holder.tv2.setText(String.valueOf(result.get(position).getPrice()));
+
+        Picasso.with(context).load(ApiClient.ASSETS_URL+ result.get(position).getImageProduct().get(0).getUrl()).into(holder.img);
+//        Log.e("url",ApiClient.ASSETS_URL+ result.get(position).getImageProduct().get(0).getUrl());
 
         rowView.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {
+
+
+
+
                 // TODO Auto-generated method stub
-                Toast.makeText(context, "You Clicked "+category.getName(), Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "You Clicked "+product.getName(), Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(context, ActivityDetail.class);
-                intent.putExtra("name", category.getName());
+                intent.putExtra("name", product.getName());
 //                intent.putExtra("price", String.valueOf(produk.getPrice()) );
-                intent.putExtra("description", category.getDescription());
+                intent.putExtra("description", product.getDescription());
                 context.startActivity(intent);
             }
         });
