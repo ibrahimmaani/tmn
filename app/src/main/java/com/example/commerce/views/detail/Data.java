@@ -1,4 +1,4 @@
-package com.example.commerce;
+package com.example.commerce.views.detail;
 
 public class Data {
     public int imageId;

@@ -1,5 +1,6 @@
-package com.example.commerce;
+package com.example.commerce.views.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -9,15 +10,20 @@ import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.Toast;
 
+import com.example.commerce.R;
 import com.example.commerce.models.entities.Object;
 import com.example.commerce.models.entities.Product;
 import com.example.commerce.models.networks.ApiClient;
 import com.example.commerce.models.networks.Endpoint;
+import com.example.commerce.views.auth.ActivitySignup;
+import com.example.commerce.views.auth.MainActivity;
+import com.example.commerce.views.detail.FavoriteListActivity;
 
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class TabFragment1 extends Fragment {
@@ -29,12 +35,16 @@ public class TabFragment1 extends Fragment {
     List<Product> prod;
     Object img;
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.tab_fragment_1, container, false);
 
-        /*initFromApi1();*/
 
+
+
+
+        /*initFromApi1();*/
 
         Endpoint endpoint = ApiClient.getClient().create(Endpoint.class);
 
@@ -42,7 +52,7 @@ public class TabFragment1 extends Fragment {
         call.enqueue(new Callback<Object>() {
 
             @Override
-            public void onResponse(Call<Object> call, retrofit2.Response<Object> response) {
+            public void onResponse(Call<Object> call, Response<Object> response) {
 
 
                 prod = response.body().getData().getProduct();
@@ -54,6 +64,8 @@ public class TabFragment1 extends Fragment {
                 adapterViewAndroid = new GridViewAdapter(getActivity(),prod);
                 GridView gridView = (GridView) view.findViewById(R.id.gridview1);
                 gridView.setAdapter(adapterViewAndroid);
+
+
             }
 
 

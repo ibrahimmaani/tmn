@@ -5,6 +5,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
+import com.example.commerce.views.home.TabFragment1;
+
 public class PagerAdapter extends FragmentStatePagerAdapter {
     int mNumOfTabs;
 

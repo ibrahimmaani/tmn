@@ -1,45 +1,54 @@
-package com.example.commerce;
+package com.example.commerce.views.auth;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.commerce.R;
+import com.example.commerce.Session.UserSession;
+import com.example.commerce.models.networks.ApiClient;
+import com.example.commerce.models.networks.Endpoint;
 import com.example.commerce.sidenavigation.NavBar;
+import com.example.commerce.views.auth.resp.RespSignin;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class ActivitySignin extends AppCompatActivity {
+
     private EditText inputEmail, inputPassword;
-    private FirebaseAuth auth;
+    //    private FirebaseAuth auth;
     private ProgressBar progressBar;
     private Button btnLogin;
     private SignInButton signInButton;
     private static final int RC_SIGN_IN = 1;
     private GoogleApiClient mGoogleApiClient;
+    private String email;
+    private String pass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        inputEmail = (EditText) findViewById(R.id.email);
+        inputPassword = (EditText) findViewById(R.id.pass);
+
 
         //Get Firebase auth instance
-        auth = FirebaseAuth.getInstance();
+        /*auth = FirebaseAuth.getInstance();
         if (auth.getCurrentUser() != null) {
             startActivity(new Intent(ActivitySignin.this, NavBar.class));
             finish();
-        }
+        }*/
 
         // set the view now
         setContentView(R.layout.activity_signin);
@@ -55,13 +64,55 @@ public class ActivitySignin extends AppCompatActivity {
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         btnLogin = (Button) findViewById(R.id.btn_login);
 
+
         //Get Firebase auth instance
-        auth = FirebaseAuth.getInstance();
+//        auth = FirebaseAuth.getInstance();
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email = inputEmail.getText().toString();
+
+
+                if (validate()) {
+
+                    Endpoint endpoint = ApiClient.getClient().create(Endpoint.class);
+
+                    Call<RespSignin> call = endpoint.authLogin(email, pass);
+                    call.enqueue(new Callback<RespSignin>() {
+                        @Override
+                        public void onResponse(Call<RespSignin> call, Response<RespSignin> response) {
+
+                            RespSignin resp = response.body();
+
+                            if (resp != null) {
+                                if (resp.getStatus().equals("success")) {
+                                    UserSession userSession = new UserSession(ActivitySignin.this);
+                                    userSession.createLoginSession(pass, email, resp.getData().getToken());
+                                    Intent signin = new Intent(ActivitySignin.this, NavBar.class);
+                                    startActivity(signin);
+                                    finish();
+                                } else {
+                                    Toast.makeText(ActivitySignin.this, "Field kosong", Toast.LENGTH_LONG).show();
+                                }
+                            }
+
+
+                        }
+
+                        @Override
+                        public void onFailure(Call<RespSignin> call, Throwable t) {
+
+                        }
+                    });
+
+                }
+
+//            @Override
+//            public void onClick(View v) {
+//                btn_signin.setOnClickListener(new View.OnClickListener() {
+
+
+                /*String email = inputEmail.getText().toString();
                 final String password = inputPassword.getText().toString();
 
                 if (TextUtils.isEmpty(email)) {
@@ -99,10 +150,31 @@ public class ActivitySignin extends AppCompatActivity {
                                 }
                             }
                         });
+            }*/
             }
+
         });
 
     }
+
+    public boolean validate() {
+        if (inputEmail.getText().length() > 0) {
+            email = inputEmail.getText().toString();
+        } else {
+            inputEmail.requestFocus();
+            inputEmail.setError("Field belum diisi");
+            return false;
+        }
+        if (inputPassword.getText().length() > 0) {
+            pass = inputPassword.getText().toString();
+        } else {
+            inputPassword.requestFocus();
+            inputPassword.setError("Field belum diisi");
+            return false;
+        }
+        return true;
+    }
+
 
     @Override
     public boolean onSupportNavigateUp() {

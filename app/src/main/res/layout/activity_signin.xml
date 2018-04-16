@@ -67,13 +67,6 @@
             android:text="Forgot Password ?"
             android:textColor="@android:color/black"
             android:textSize="15dp" />
-        <com.google.android.gms.common.SignInButton
-            android:id="@+id/googlebtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            >
-        </com.google.android.gms.common.SignInButton>
 
         <ProgressBar
             android:id="@+id/progressBar"

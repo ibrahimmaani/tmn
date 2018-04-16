@@ -6,6 +6,7 @@
     android:layout_height="match_parent">
 
     <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scrollbars="none">
@@ -15,11 +16,11 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar_dtl1"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize">
-            </android.support.v7.widget.Toolbar>
+                android:layout_height="?attr/actionBarSize"></android.support.v7.widget.Toolbar>
 
 
             <RelativeLayout
@@ -35,8 +36,31 @@
                     android:src="@drawable/barcode" />
 
                 <android.support.v7.widget.SearchView
+                    android:id="@+id/searchView"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"></android.support.v7.widget.SearchView>
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"></android.support.v7.widget.SearchView>
+
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/searchView"
+                    android:layout_marginStart="15dp"
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/name"
+                    android:layout_marginStart="15dp"
+                    android:textColor="@android:color/black" />
 
             </RelativeLayout>
 
@@ -48,12 +72,11 @@
                 <ImageView
                     android:id="@+id/img"
                     android:layout_width="match_parent"
-                    android:layout_height="530dp"
+                    android:layout_height="450dp"
                     android:layout_gravity="center"
                     android:layout_marginBottom="20dp"
                     android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
-                     />
+                    android:layout_marginRight="15dp" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -76,7 +99,6 @@
                         android:layout_width="64dip"
                         android:layout_height="64dip"
                         android:layout_marginBottom="70dp"
-                        android:layout_marginEnd="15dp"
                         android:src="@drawable/share"
                         app:cb_color="@android:color/darker_gray"
                         app:cb_pressedRingWidth="8dip" />
@@ -87,37 +109,38 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-
+                <TextView
+                    android:id="@+id/label_qty"
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:text="QTY :"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold"
+                    android:layout_marginStart="15dp"/>
+                <Spinner
+                    android:id="@+id/qty"
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginBottom="30dp"
+                    android:entries="@array/qty"
+                    android:prompt="@string/qty_prompt"
+                    android:layout_below="@id/label_qty"
+                    >
+                </Spinner>
                 <Button
                     android:id="@+id/add_chart"
-                    android:layout_width="150dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentEnd="true"
                     android:layout_marginEnd="15dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_below="@+id/qty"
                     android:background="@android:color/black"
                     android:text="ADD TO CHART"
                     android:textColor="@android:color/white" />
-
-                <TextView
-                    android:id="@+id/name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_marginStart="15dp"
-                    android:textAllCaps="true"
-                    android:textColor="@android:color/black"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/price"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_below="@+id/name"
-                    android:layout_marginStart="15dp"
-                    android:textColor="@android:color/black" />
             </RelativeLayout>
 
             <View
@@ -142,20 +165,63 @@
                 android:id="@+id/label_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
-                android:layout_marginStart="15dp"
                 android:layout_marginEnd="15dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="25dp"
                 android:text="description"
                 android:textAllCaps="true"
-                android:textStyle="bold"
-                android:textColor="@android:color/black"/>
+                android:textColor="@android:color/black"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <at.blogc.android.views.ExpandableTextView
+                    android:id="@+id/description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="10dp"
+                    android:ellipsize="end"
+                    android:maxLines="5"
+                    app:animation_duration="750" />
+
+                <ImageButton
+                    android:id="@+id/down"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginStart="15dp"
+                    android:background="@drawable/ic_keyboard_arrow_down_black_24dp"
+                    android:clickable="true" />
+
+                <ImageButton
+                    android:id="@+id/up"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginStart="15dp"
+                    android:background="@drawable/ic_keyboard_arrow_up_black_24dp"
+                    android:clickable="true"
+                    android:visibility="gone" />
+            </LinearLayout>
+
             <TextView
-                android:id="@+id/description"
+                android:id="@+id/label_review"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginEnd="15dp"
                 android:layout_marginStart="15dp"
-                android:layout_marginEnd="15dp"/>
+                android:layout_marginTop="25dp"
+                android:text="review"
+                android:textAllCaps="true"
+                android:textColor="@android:color/black"
+                android:textStyle="bold" />
         </LinearLayout>
 
 

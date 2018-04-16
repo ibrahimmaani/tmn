@@ -12,7 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".SplashActivity"
+            android:theme="@style/SplashTheme">
+
+        </activity>
+        
+        <activity
+            android:name=".views.auth.MainActivity"
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,24 +26,22 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".HomeUnused"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme">
-        </activity>
-        <activity
-            android:name=".ActivitySignin"
+            android:name=".views.auth.ActivitySignin"
             android:label="@string/app_name">
         </activity>
         <activity
-            android:name=".ActivitySignup"
+            android:name=".views.auth.ActivitySignup"
             android:label="@string/app_name"
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".ActivityDetail"
+            android:name=".views.detail.ActivityDetail"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         </activity>
         <activity android:name=".sidenavigation.NavBar"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        </activity>
+        <activity android:name=".views.detail.FavoriteListActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         </activity>
 

@@ -1,8 +1,9 @@
-package com.example.commerce;
+package com.example.commerce.views.home;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -10,10 +11,11 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.example.commerce.R;
 import com.example.commerce.models.entities.Product;
 import com.example.commerce.models.networks.ApiClient;
+import com.example.commerce.views.detail.ActivityDetail;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -78,17 +80,25 @@ public class GridViewAdapter extends BaseAdapter{
 
             @Override
             public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putParcelable("value", product);
+                bundle.putString("image", product.getImageProduct().get(0).getUrl());
+                Intent intent = new Intent(context, ActivityDetail.class);
+                intent.putExtras(bundle);
+                context.startActivity(intent);
 
 
 
 
-                // TODO Auto-generated method stub
+
+
+                /*// TODO Auto-generated method stub
                 Toast.makeText(context, "You Clicked "+product.getName(), Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(context, ActivityDetail.class);
                 intent.putExtra("name", product.getName());
 //                intent.putExtra("price", String.valueOf(produk.getPrice()) );
                 intent.putExtra("description", product.getDescription());
-                context.startActivity(intent);
+                context.startActivity(intent);*/
             }
         });
 

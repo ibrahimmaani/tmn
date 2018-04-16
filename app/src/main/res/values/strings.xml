@@ -15,4 +15,23 @@
     <string name="address">address</string>
     <string name="Phonenumber">phone number</string>
     <string name="country">country</string>
+    <string name="expand">more</string>
+    <string name="collapse">hide</string>
+    <string name="add_favr">add to your favourite</string>
+    <string name="remove_favr">remove from your favourite</string>
+    <string name="no_favorites_items">no favourite</string>
+
+
+
+
+
+
+    <string name="qty_prompt">quantities</string>
+    <string-array name="qty">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+
 </resources>

@@ -1,4 +1,4 @@
-package com.example.commerce;
+package com.example.commerce.views.auth;
 
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
@@ -9,10 +9,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.example.commerce.R;
+
 public class MyCustomPagerAdapter extends PagerAdapter {
     Context context;
     int images[];
     LayoutInflater layoutInflater;
+
 
     public MyCustomPagerAdapter(Context context, int images[]) {
         this.context = context;

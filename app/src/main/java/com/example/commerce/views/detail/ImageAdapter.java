@@ -1,4 +1,4 @@
-package com.example.commerce;
+package com.example.commerce.views.detail;
 
 
 import android.content.Context;
@@ -9,7 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 
-import com.example.commerce.views.detail.ActivityDetail;
+import com.example.commerce.R;
 
 public class ImageAdapter extends BaseAdapter{
     private Context mContext;

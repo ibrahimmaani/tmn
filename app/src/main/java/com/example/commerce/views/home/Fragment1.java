@@ -1,4 +1,4 @@
-package com.example.commerce.sidenavigation;
+package com.example.commerce.views.home;
 
 
 import android.os.Bundle;
@@ -26,8 +26,8 @@ public class Fragment1 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_home, container, false);
         TabLayout tabLayout = (TabLayout) view.findViewById(R.id.tab_layout);
-        tabLayout.addTab(tabLayout.newTab().setText("OUTERWEAR"));
-        tabLayout.addTab(tabLayout.newTab().setText("JACKETS"));
+        tabLayout.addTab(tabLayout.newTab().setText("CAT"));
+        tabLayout.addTab(tabLayout.newTab().setText("DOG"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         tabLayout.setSelectedTabIndicatorHeight((int) (0 * getResources().getDisplayMetrics().density));
 
@@ -35,7 +35,6 @@ public class Fragment1 extends Fragment {
         final PagerAdapter adapter = new PagerAdapter(getChildFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-
 
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
